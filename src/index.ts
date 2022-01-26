@@ -1,5 +1,6 @@
+'use strict';
 
+import JobQueue from './JobQueue';
 
-module.exports = {
+export { JobQueue };
 
-}

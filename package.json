@@ -2,9 +2,9 @@
   "name": "@material-appkit/polite",
   "version": "0.1.0",
   "description": "Client-side resource retrieval with reasonable manners",
-  "main": "dist/polite.js",
-  "module": "dist/polite.mjs",
-  "typings": "dist/polite.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
   "repository": "git@github.com:material-appkit/polite.git",
   "author": "Allan Hart",
   "license": "MIT",
@@ -15,17 +15,18 @@
     "esbuild": "^0.14.13",
     "eslint": "^8.7.0",
     "jest": "^27.4.7",
-    "rollup": "^2.66.1",
-    "rollup-plugin-dts": "^4.1.0",
-    "rollup-plugin-esbuild": "^4.8.2",
-    "rollup-plugin-terser": "^7.0.2",
+    "npm-dts": "^1.3.10",
+    "rimraf": "^3.0.2",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.5"
   },
+  "peerDependencies": {
+  },
   "scripts": {
-    "build": "rollup -c",
     "lint": "eslint --fix 'src/**/*.ts'",
-    "test": "jest"
+    "test": "jest",
+    "build": "rimraf dist && node esbuild.js && npm run ts-types",
+    "ts-types": "tsc --emitDeclarationOnly --outDir dist"
   },
   "jest": {
     "moduleFileExtensions": [
