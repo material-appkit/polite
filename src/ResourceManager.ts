@@ -1,7 +1,7 @@
-import ResourceLoader, {ResourceLoadHandlers} from './ResourceLoader';
+import ResourceLoader, {ResourceLoaderOptions} from './ResourceLoader';
 
 
-class DownloadQueue {
+class ResourceManager {
   _queue: Map<string, ResourceLoader>;
 
   constructor() {
@@ -9,16 +9,13 @@ class DownloadQueue {
   }
 
 
-  public load(url:string, handlers?:ResourceLoadHandlers):ResourceLoader {
+  public load(url:string, options?:ResourceLoaderOptions):ResourceLoader {
     let loader = this._queue.get(url);
     if (!loader) {
-      loader = new ResourceLoader(url);
+      loader = new ResourceLoader(url, options || {});
       this._queue.set(url, loader);
     }
 
-    if (handlers) {
-      loader.addHandlers(handlers);
-    }
     this._processQueue();
 
     return loader;
@@ -42,4 +39,4 @@ class DownloadQueue {
   }
 }
 
-export default DownloadQueue;
+export default ResourceManager;

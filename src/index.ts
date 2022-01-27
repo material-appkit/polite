@@ -1,6 +1,6 @@
 'use strict';
 
-import ResourceManager from './JobQueue';
+import ResourceManager from './ResourceManager';
 
 export { ResourceManager };
 
